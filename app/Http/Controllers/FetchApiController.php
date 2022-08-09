@@ -44,7 +44,7 @@ class FetchApiController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.rajaongkir.com/starter/cities",
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/city",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -64,7 +64,9 @@ class FetchApiController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-              return $response;
+            $response = json_decode($response, true);
+            $result = $response['rajaongkir']['results'];
+            return $result;
           
         }
     }

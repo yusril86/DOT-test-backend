@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/getProvince',[FetchApiController::class,"getProvince"]);
+
+Route::controller(FetchApiController::class)->group(function () {
+    Route::get('/getProvince', 'getProvince');
+    Route::get('/getCities', 'getCities');
+});
