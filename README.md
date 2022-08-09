@@ -15,6 +15,8 @@ composer install
 ```
 - Setup .env .Copy isi .env.example kemudian buat file baru dengan nama .env dan paste 
 
+- Pilih branch sprint1​ atau  sprint2
+
 - Setup Database
 Buat table database mysql sesuai dengan nama database yang berada di .env 
 
