@@ -22,7 +22,7 @@ class CityController extends Controller
     }
 
     public function searchCities(Request $request){
-        $api = $request->input('API');
+        $api = $request->input('from-api');
         $id = $request->input('id');
 
         if (strtoupper($api) === "TRUE") {
@@ -31,6 +31,14 @@ class CityController extends Controller
                 'status'=>true,
                 'message'=>'success',
                 'data'=>$query
+            ]);
+        }else if($id){
+            $query = City::query();
+            $query->whereRaw("city_id LIKE '%". $id . "%'");            
+            return response()->json([
+                'status'=>true,
+                'message'=>'success',
+                'data'=>$query->get()
             ]);
         }else{
             $query = City::query();

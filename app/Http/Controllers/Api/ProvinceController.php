@@ -23,7 +23,7 @@ class ProvinceController extends Controller
 
     public function searchProvince(Request $request){
     
-        $api = $request->input('API');
+        $api = $request->input('from-api');
         $id = $request->input('id');
 
         if (strtoupper($api) === "TRUE") {
@@ -32,6 +32,14 @@ class ProvinceController extends Controller
                 'status'=>true,
                 'message'=>'success',
                 'data'=>$query
+            ]);
+        }else if($id) {
+            $query = Province::query();
+            $query->whereRaw("province_id LIKE '%". $id . "%'");            
+            return response()->json([
+                'status'=>true,
+                'message'=>'success',
+                'data'=>$query->get()
             ]);
         }else{
             $query = Province::query();

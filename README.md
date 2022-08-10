@@ -28,6 +28,11 @@ php artisan migrate
 
 
 ## 2. Cara Penggunaan
+- Lakukan database migration and seeder :
+```bash
+php artisan migrate --seed
+```
+
 - Jalankan menggunakan perintah:
 ```bash
 php artisan serve
@@ -47,8 +52,27 @@ php artisan create:province
 php artisan create:city
 ```
 
-- Membuat REST API : 
-1. Tampilkan semua provinsi  : "http://127.0.0.1:8000/api/all/provinces"
-2. Pencarian Provinsi : "http://127.0.0.1:8000/api/search/provinces?id={province_id}"
-3. Tampilkan Semua kota : "http://127.0.0.1:8000/api/all/cities"
-4. Pencarian kota :  "http://127.0.0.1:8000/api/search/cities?id={city_id}"
+1. Swap Api Provinsi : 
+- Dari database   : "http://127.0.0.1:8000/api/search/provinces?id={province_id}&from-api=false"
+- Dari API RajaOngkir   : "http://127.0.0.1:8000/api/search/provinces?id={province_id}&from-api=true"
+```bash
+Example : 
+http://127.0.0.1:8000/api/search/provinces?id=34&from-api=true
+```
+
+2. Swap Api Kota : 
+- Dari database   : "http://127.0.0.1:8000/api/search/cities?id={city_id}&from-api=false"
+- Dari API RajaOngkir   : "http://127.0.0.1:8000/api/search/cities?id={city_id}&from-api=true"
+```bash
+Example : 
+http://127.0.0.1:8000/api/search/cities?id=123&from-api=true
+```
+
+3. Authorized Login API
+- Login menggunakan user yang ada di database 
+- API login : "http://127.0.0.1:8000/api/login?{email}&{password}"
+- TOken type : Bearer
+- Masuk ke Authorization POSTMAN pilih type Bearer lalu masukkan token nya
+
+
+
