@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthApiController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group( function () {
+    Route::post('/logout', [AuthApiController::class, 'logout']);
     Route::controller(ProvinceController::class)->group(function () {
         Route::get('/all/provinces', 'getProvince');
         Route::get('/search/provinces', 'searchProvince');
