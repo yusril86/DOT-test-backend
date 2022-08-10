@@ -42,15 +42,6 @@ php artisan serve
 
 - Fetch Api Kota menggunakan route : "http://127.0.0.1:8000/getCities"
 
-- Create data dari Api RajaOngkir ke database provinces :
-```bash
-php artisan create:province
-```
-
-- Create data dari Api RajaOngkir ke database cities:
-```bash
-php artisan create:city
-```
 
 1. Swap Api Provinsi : 
 - Dari database   : "http://127.0.0.1:8000/api/search/provinces?id={province_id}&from-api=false"
@@ -73,6 +64,11 @@ http://127.0.0.1:8000/api/search/cities?id=123&from-api=true
 - API login : "http://127.0.0.1:8000/api/login?{email}&{password}"
 - TOken type : Bearer
 - Masuk ke Authorization POSTMAN pilih type Bearer lalu masukkan token nya
+
+4. Unit Test 
+```bash
+vendor/bin/phpunit --verbose --debug
+```
 
 
 
