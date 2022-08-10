@@ -70,4 +70,72 @@ class FetchApiController extends Controller
           
         }
     }
+
+    public function searchProvince($id)
+    {
+        $curl = curl_init();
+        $id = request()->input('id');
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=$id",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key: 0df6d5bf733214af6c6644eb8717c92c",
+                "id: $id"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            //   echo $response;
+            $response = json_decode($response, true);
+            $result = $response['rajaongkir']['results'];
+            return $result;
+        }
+    }
+
+    public function searchCities($id)
+    {
+        $curl = curl_init();
+        $id = request()->input('id');
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/city?id=$id",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key: 0df6d5bf733214af6c6644eb8717c92c",
+                "id: $id"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            //   echo $response;
+            $response = json_decode($response, true);
+            $result = $response['rajaongkir']['results'];
+            return $result;
+        }
+    }
 }

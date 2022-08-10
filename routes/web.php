@@ -21,5 +21,6 @@ Route::get('/', function () {
 
 Route::controller(FetchApiController::class)->group(function () {
     Route::get('/getProvince', 'getProvince');
+    Route::get('/searchProvince', 'searchProvince');
     Route::get('/getCities', 'getCities');
 });

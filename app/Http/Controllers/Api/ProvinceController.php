@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FetchApiController;
 use App\Models\Province;
 use Illuminate\Http\Request;
 
@@ -21,12 +22,27 @@ class ProvinceController extends Controller
     }
 
     public function searchProvince(Request $request){
-        $query = Province::query();
+    
+        $api = $request->input('API');
+        $id = $request->input('id');
 
-        if ($id = $request->input('id')) {
-            $query->whereRaw("province_id LIKE '%". $id . "%'");
+        if (strtoupper($api) === "TRUE") {
+            $query = (new FetchApiController)->searchProvince($id);
+            return response()->json([
+                'status'=>true,
+                'message'=>'success',
+                'data'=>$query
+            ]);
+        }else{
+            $query = Province::query();
+            $query->whereRaw("province_id LIKE '%". $id . "%'");            
+            return response()->json([
+                'status'=>true,
+                'message'=>'success',
+                'data'=>$query->get()
+            ]);
         }
-
-        return $query->get();
+        
+        
     }
 }
